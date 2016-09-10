@@ -23,7 +23,6 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
-
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 )
 
@@ -39,15 +38,12 @@ func (t *SimpleChaincode) Init(stub *shim.ChaincodeStub, function string, args [
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
 	}
-
 	A = args[0]
-
 	// Write the state to the ledger
 	err = stub.PutState(A, []byte(strconv.Itoa(1)))
 	if err != nil {
 		return nil, err
 	}
-
 	return nil, nil
 }
 
@@ -68,7 +64,6 @@ func (t *SimpleChaincode) invoke(stub *shim.ChaincodeStub, args []string) ([]byt
 	if err != nil {
 		return nil, err
 	}
-
 	return nil, nil
 }
 
@@ -150,9 +145,13 @@ func (t *SimpleChaincode) Query(stub *shim.ChaincodeStub, function string, args 
 		return nil, errors.New(jsonResp)
 	}
 
-	jsonResp := "{\"Name\":\"" + A + "\",\"Amount\":\"" + string(Avalbytes) + "\"}"
-	fmt.Printf("Query Response:%s\n", jsonResp)
-	return Avalbytes, nil
+	//ADD
+	jsonResp := "{" + string(stub.GetTxTimestamp()) + "," + string(Avalbytes) "}"
+	return nil, errors.New(jsonResp)
+
+	//jsonResp := "{\"Name\":\"" + A + "\",\"Amount\":\"" + string(Avalbytes) + "\"}"
+	//fmt.Printf("Query Response:%s\n", jsonResp)
+	//return Avalbytes, nil
 }
 
 func main() {
