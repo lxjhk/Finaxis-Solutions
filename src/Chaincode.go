@@ -153,7 +153,7 @@ func (t *SimpleChaincode) Query(stub *shim.ChaincodeStub, function string, args 
 	time, errGetTxTimestamp :=  stub.GetTxTimestamp()
 	payload, errpayload := stub.GetPayload();
 	//time_string, errTimestampString := TimestampString(time)
-	jsonResp := "{" + payload + "," + string(Avalbytes) + "}"
+	jsonResp := "{" + string(payload[:]) + "," + string(Avalbytes) + "}"
 	return nil, errors.New(jsonResp)
 
 	//jsonResp := "{\"Name\":\"" + A + "\",\"Amount\":\"" + string(Avalbytes) + "\"}"
