@@ -43,7 +43,7 @@ func (t *SimpleChaincode) Init(stub *shim.ChaincodeStub, function string, args [
 	A = args[0]
 
 	// Write the state to the ledger
-	err = stub.PutState(A, []byte(strconv.Itoa("1")))
+	err = stub.PutState(A, []byte(strconv.Itoa(1)))
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (t *SimpleChaincode) invoke(stub *shim.ChaincodeStub, args []string) ([]byt
 	A = args[0]
 
 	// Write the state back to the ledger
-	err = stub.PutState(A, []byte(strconv.Itoa("1")))
+	err = stub.PutState(A, []byte(strconv.Itoa(1)))
 	if err != nil {
 		return nil, err
 	}
