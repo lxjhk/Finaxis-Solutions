@@ -24,10 +24,6 @@ import (
 	"fmt"
 	"strconv"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/golang/protobuf/ptypes"
-	tspb "github.com/golang/protobuf/ptypes/timestamp"
-	"github.com/golang/protobuf/proto"
-	"time"
 )
 
 // SimpleChaincode example simple Chaincode implementation
