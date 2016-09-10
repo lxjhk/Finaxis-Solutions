@@ -141,12 +141,12 @@ func (t *SimpleChaincode) Query(stub *shim.ChaincodeStub, function string, args 
 	}
 
 	if Avalbytes == nil {
-		jsonResp := "{\"Error\":\"Nil amount for " + A + "\"}"
+		jsonResp := "{\"Error\":\"Nil amount for " + A + "}"
 		return nil, errors.New(jsonResp)
 	}
 
 	//ADD
-	jsonResp := "{" + string(stub.GetTxTimestamp()) + "," + string(Avalbytes) "}"
+	jsonResp := "{" + string(stub.GetTxTimestamp()) + "," + string(Avalbytes) + "}"
 	return nil, errors.New(jsonResp)
 
 	//jsonResp := "{\"Name\":\"" + A + "\",\"Amount\":\"" + string(Avalbytes) + "\"}"
