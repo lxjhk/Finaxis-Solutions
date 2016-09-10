@@ -24,6 +24,7 @@ import (
 	"fmt"
 	"strconv"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
+	"github.com/golang/protobuf/ptypes"
 )
 
 // SimpleChaincode example simple Chaincode implementation
@@ -146,8 +147,9 @@ func (t *SimpleChaincode) Query(stub *shim.ChaincodeStub, function string, args 
 	}
 
 	//ADD
-	time, errerr :=  stub.GetTxTimestamp()
-	jsonResp := "{" + string(time) + "," + string(Avalbytes) + "}"
+	time, errGetTxTimestamp :=  stub.GetTxTimestamp()
+	time_string, errTimestampString := TimestampString(time)
+	jsonResp := "{" + time_string + "," + string(Avalbytes) + "}"
 	return nil, errors.New(jsonResp)
 
 	//jsonResp := "{\"Name\":\"" + A + "\",\"Amount\":\"" + string(Avalbytes) + "\"}"
